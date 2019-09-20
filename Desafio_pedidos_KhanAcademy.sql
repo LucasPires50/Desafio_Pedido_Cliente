@@ -8,12 +8,6 @@ Faça uma consulta que lista o nome, name, e o email de todos os clientes seguid
 dos pedidos que eles fizeram. Use um LEFT OUTER JOIN para que um cliente seja listado mesmo se ele não fez pedidos 
 e não adicione nenhum ORDER BY.
 
-Etapa 2
-
-Agora, crie outra consulta que vai resultar em uma linha para cada cliente, com seu nome name, seu emaile a quantia 
-total de dinheiro que ele gastou com pedidos. Ordene as linhas de acordo com o dinheiro gasto, do que gastou mais para 
-o que gastou menos.
-(Dica: você sempre deve usar GROUP BY na coluna com maior probabilidade de ser única em uma linha).
 */
 
 CREATE TABLE customers (
@@ -42,6 +36,14 @@ SELECT customers.name, customers.email, orders.item, orders.price
 	FROM customers 
 	LEFT OUTER JOIN orders 
     ON customers.id = orders.customer_id;
+/*    
+Etapa 2
+
+Agora, crie outra consulta que vai resultar em uma linha para cada cliente, com seu nome name, seu emaile a quantia 
+total de dinheiro que ele gastou com pedidos. Ordene as linhas de acordo com o dinheiro gasto, do que gastou mais para 
+o que gastou menos.
+(Dica: você sempre deve usar GROUP BY na coluna com maior probabilidade de ser única em uma linha).
+*/
 
 SELECT customers.name, customers.email, SUM(orders.price) 
 	FROM customers 
